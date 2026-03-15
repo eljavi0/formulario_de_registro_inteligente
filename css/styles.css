@@ -30,6 +30,25 @@ body{
     position: relative;
 }
 
+/* login integrado: no se requieren estilos de pestañas */
+
+label{
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    background: rgba(0,0,0,0.2);
+    border: 2px solid transparent;
+    border-radius: 5px;
+    color: white;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
 label{
     display: block;
     margin-bottom: 5px;

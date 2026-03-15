@@ -10,8 +10,9 @@
 
 <body>
  <div class="contenedor-principal">
+    <section id="registro">
     <form id="formulario-registro" novalidate>
-        <h2>crea tu cuenta</h2>
+        <h2>Crear tu cuenta</h2>
 
         <div class="datos-entrada">
             <label for="nombreusuario">Nombre de usuario</label>
@@ -34,7 +35,27 @@
 
         <button type="submit" id="botonenviar">Registrarme</button>
     </form>
- </div>   
+    </section>
+
+            <section id="login" style="display:none">
+                <form id="form-login" novalidate>
+                    <h2>Iniciar sesión</h2>
+
+                    <div class="datos-entrada">
+                            <label for="login-usuario">Nombre de usuario</label>
+                            <input type="text" id="login-usuario" required placeholder="tu_usuario">
+                            <span class="mensaje-error" id="login-error" style="display:none"></span>
+                    </div>
+
+                    <div class="datos-entrada">
+                            <label for="login-contrasena">Contraseña</label>
+                            <input type="password" id="login-contrasena" required placeholder="Tu contraseña">
+                    </div>
+
+                    <button type="submit" id="boton-login">Entrar</button>
+                </form>
+            </section>
+     </div>   
 </body>
 
 </html>

@@ -1,5 +1,65 @@
 // Esperar a que el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
+    // helper: leer el usuario almacenado (versión simple actual)
+    function getStoredUser() {
+        try {
+            return JSON.parse(localStorage.getItem('usuarioRegistrado')) || null;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    // helper: mostrar el formulario de login
+    function showLogin(prefillUser) {
+        const registroSection = document.getElementById('registro');
+        const loginSection = document.getElementById('login');
+        if (registroSection) registroSection.style.display = 'none';
+        if (loginSection) {
+            loginSection.style.display = 'block';
+            const inUser = document.getElementById('login-usuario');
+            const inPass = document.getElementById('login-contrasena');
+            if (inUser && prefillUser) inUser.value = prefillUser;
+            if (inPass) inPass.focus();
+        }
+    }
+
+    // login handler: compara con el único usuario guardado bajo 'usuarioRegistrado'
+    const formLogin = document.getElementById('form-login');
+    if (formLogin) {
+        formLogin.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const loginUser = document.getElementById('login-usuario').value.trim();
+            const loginPass = document.getElementById('login-contrasena').value;
+            const errorSpan = document.getElementById('login-error');
+
+            const stored = getStoredUser();
+            if (!stored) {
+                errorSpan.textContent = 'No hay usuarios registrados aún.';
+                errorSpan.style.display = 'block';
+                return;
+            }
+
+            if (loginUser !== stored.nombreusuario) {
+                errorSpan.textContent = 'Usuario no encontrado.';
+                errorSpan.style.display = 'block';
+                return;
+            }
+
+            if (loginPass !== stored.password) {
+                errorSpan.textContent = 'Contraseña incorrecta.';
+                errorSpan.style.display = 'block';
+                return;
+            }
+
+            // redirigir a una página externa como muestra de que el ingreso fue exitoso
+            window.location.href = 'https://eljavi0.github.io/ben10-lookbook/#inicio';
+
+            document.getElementById('logout').addEventListener('click', () => {
+                localStorage.removeItem('usuarioRegistrado');
+                location.reload();
+            });
+        });
+    }
     // Referenciacion a los elementos del DOM
     const formulario = document.getElementById('formulario-registro');
     const password = document.getElementById('contrasena');
@@ -30,13 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
         else seguridad.style.backgroundColor = '#10b981';
     });
 
-    // validacion al enviar
+    // validacion al enviar (registro)
     formulario.addEventListener('submit', (e) => {
         e.preventDefault(); // evita recarga
 
         // Usar reportValidity para mostrar mensajes nativos y bloquear envío si inválido
         if (!formulario.reportValidity()) {
-            // si hay campos inválidos, salir (reportValidity ya muestra mensajes)
+            // si hay campos inválidos, salir
             return;
         }
 
@@ -50,11 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         localStorage.setItem('usuarioRegistrado', JSON.stringify(datosUsuario));
 
-    // retroalimentación al usuario
-    alert('🚀 ¡Registro exitoso! Serás redirigido...');
-    console.log('Datos en LocalStorage:', JSON.parse(localStorage.getItem('usuarioRegistrado')));
-
-    // redirigir a una página de agradecimiento/confirmación
-    window.location.href = 'https://eljavi0.github.io/ben10-lookbook/#inicio';
+        // Mostrar login y prefill
+        showLogin(usuario.value);
     });
 });

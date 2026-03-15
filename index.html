@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Taller: Formulario de Registro</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/scripts.js" defer></script>
+</head>
+
+<body>
+ <div class="contenedor-principal">
+    <form id="formulario-registro" novalidate>
+        <h2>crea tu cuenta</h2>
+
+        <div class="datos-entrada">
+            <label for="nombreusuario">Nombre de usuario</label>
+            <input type="text" id="nombreusuario" name="nombreusuario" placeholder="Ej: dev_master" required minlength="4">
+            <span class="mensaje-error">El nombre de usuario debe tener al menos 4 caracteres.</span>
+        </div>
+
+        <div class="datos-entrada">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" placeholder="tu@correo.com" required>
+            <span class="mensaje-error">Ingresa un correo electrónico válido.</span>
+        </div>
+
+        <div class="datos-entrada">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" required placeholder="Mín. 8 caracteres, letras y números" pattern="(?=.{8,})(?=.*[A-Za-z])(?=.*\d).+">
+            <span class="mensaje-error">La contraseña debe tener al menos 8 caracteres y contener letras y números.</span>
+            <div class="nivel-seguridad" id="nivelseguridad"></div>
+        </div>
+
+        <button type="submit" id="botonenviar">Registrarme</button>
+    </form>
+ </div>   
+</body>
+
+</html>

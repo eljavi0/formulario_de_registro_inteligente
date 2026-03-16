@@ -23,6 +23,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // helper: agregar toggle de mostrar/ocultar contraseña a cualquier campo
+    function setupPasswordToggle(iconId, inputId) {
+        const icon = document.getElementById(iconId);
+        const input = document.getElementById(inputId);
+        if (!icon || !input) return;
+
+        icon.addEventListener('click', () => {
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            icon.classList.toggle('fa-eye-slash', !isPassword);
+            icon.classList.toggle('fa-eye', isPassword);
+        });
+    }
+
+    // habilitar toggle de contraseña para ambos formularios
+    setupPasswordToggle('icono-contrasena', 'contrasena');
+    setupPasswordToggle('icono-contrasena-login', 'login-contrasena');
+
     // login handler: compara con el único usuario guardado bajo 'usuarioRegistrado'
     const formLogin = document.getElementById('form-login');
     if (formLogin) {

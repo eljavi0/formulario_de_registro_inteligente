@@ -108,3 +108,11 @@ button{
     margin-top: 5px;
     transition: 0.5s;
 }
+.fa-eye, .fa-eye-slash{
+    position: absolute;
+    right: 12px;
+    top: 42px;
+    cursor: pointer;
+    color: rgba(255,255,255,0.7);
+    font-size: 18px;
+}

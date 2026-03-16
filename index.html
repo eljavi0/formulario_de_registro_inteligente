@@ -5,6 +5,8 @@
     <title>Taller: Formulario de Registro</title>
     <link rel="stylesheet" href="css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Cargando los íconos de Font Awesome para el botón mostrar/ocultar contraseña -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="js/scripts.js" defer></script>
 </head>
 
@@ -30,6 +32,7 @@
             <label for="contrasena">Contraseña</label>
             <input type="password" id="contrasena" required placeholder="Mín. 8 caracteres, letras y números" pattern="(?=.{8,})(?=.*[A-Za-z])(?=.*\d).+">
             <span class="mensaje-error">La contraseña debe tener al menos 8 caracteres y contener letras y números.</span>
+            <i id ="icono-contrasena" class="fa fa-eye-slash"></i>
             <div class="nivel-seguridad" id="nivelseguridad"></div>
         </div>
 
@@ -50,6 +53,7 @@
                     <div class="datos-entrada">
                             <label for="login-contrasena">Contraseña</label>
                             <input type="password" id="login-contrasena" required placeholder="Tu contraseña">
+                            <i id="icono-contrasena-login" class="fa fa-eye-slash"></i>
                     </div>
 
                     <button type="submit" id="boton-login">Entrar</button>
